@@ -26,9 +26,9 @@ class AuthController extends Controller
                 'password' => Hash::make($validatedData['password']),
             ]);
 
-            return $this->generateResponse('User successfully registered.', $request->all());
+            return generateResponse('User successfully registered.', $request->all());
         } catch (\Throwable $th) {
-            return $this->generateResponse($th->getMessage(), [], 500,  'error');
+            return generateResponse($th->getMessage(), [], 500,  'error');
         }
     }
 
@@ -51,20 +51,20 @@ class AuthController extends Controller
 
             // Create token
             $token = $user->createToken('auth_token')->plainTextToken;
-            return $this->generateResponse('User successfully login with token Bearer ' . $token, $request->all());
+            return generateResponse('User successfully login with token Bearer ' . $token, $request->all());
         } catch (\Throwable $th) {
-            return $this->generateResponse($th->getMessage(), [], 500,  'error');
+            return generateResponse($th->getMessage(), [], 500,  'error');
         }
     }
     public function loginResponse()
     {
-        return $this->generateResponse('This is the login page. You are not logged in or authenticated.', [], 401, 'error');
+        return generateResponse('This is the login page. You are not logged in or authenticated.', [], 401, 'error');
     }
 
     // Logout user
     public function logout(Request $request)
     {
         $request->user()->tokens()->delete();
-        return $this->generateResponse('Successfully logged out.');
+        return generateResponse('Successfully logged out.');
     }
 }
