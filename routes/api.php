@@ -26,5 +26,6 @@ Route::name('services.')->prefix('services')->middleware('auth:sanctum')->group(
         Route::post('/apply', [VoucherController::class, 'ApplyVoucher'])->name('apply');
         Route::post('/update/{id}', [VoucherController::class, 'update'])->name('update');
         Route::get('run-voucher-activation', [VoucherController::class, 'runVoucherActivation'])->name('run-voucher-activation');
+        // wget url
     });
 });
